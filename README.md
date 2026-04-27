@@ -32,13 +32,7 @@ Splunk Indexer Cluster Project on (AWS) — Complete Documentation
 
 &#x20;                   (10.0.x.x)
 
-
-
 **2. VPC Setup**
-
-
-
-
 
 &#x20;Component      	 Value
 
@@ -49,20 +43,12 @@ Splunk Indexer Cluster Project on (AWS) — Complete Documentation
 &#x20;Public Subnet  	 10.0.1.0/24
 
 &#x20;Private Subnet 	 10.0.2.0/24
-
-
-
+----------------------------------
 **3. Subnet Usage**
-
-
-
-Instance:		Subnet:
-
-Search Head		Public Subnet
-
-Cluster Manager		Public Subnet
-
-Peer Nodes		Private Subnet
+Instance:		           Subnet:
+Search Head		      Public Subnet
+Cluster Manager		  Public Subnet
+Peer Nodes		      Private Subnet
 
 
 
