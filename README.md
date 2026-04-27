@@ -57,15 +57,6 @@ Peer Nodes		     Private Subnet
 
 -------------------------------------------
 
-=======
-Instance:		                Subnet:
-
-Search Head		           Public Subnet
-
-Cluster Manager		       Public Subnet
-
-Peer Nodes		           Private Subnet
->>>>>>> 0f41c1441a15fad42db2a0e7e13c739bd021b70e
 
 4. **Security Group Rules**
 
@@ -82,6 +73,10 @@ Port	Purpose
 9997	Forwarding
 
 9887	Clustering
+
+Source:
+
+10.0.0.0/16
 
 
 
