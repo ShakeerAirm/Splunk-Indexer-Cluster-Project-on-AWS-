@@ -4,19 +4,19 @@ Splunk Indexer Cluster Project on (AWS) — Complete Documentation
 
 
 
-&#x20;                   ┌────────────────────┐
+                ┌────────────────────┐
 
-&#x20;                   │   Search Head      │
+               │   Search Head      │
 
-&#x20;                   │   (10.0.1.152)     │
+                   │   (10.0.1.152)     │
 
-&#x20;                   └────────┬───────────┘
 
-&#x20;                            │ Forwarding (9997)
+                   └────────┬───────────┘
+                            │ Forwarding (9997)
+     
+  ┌───────────────────┼───────────────────┐
 
-&#x20;        ┌───────────────────┼───────────────────┐
-
-&#x20;        │                   │                   │
+        │                   │                   │
 
 ┌────────▼────────┐ ┌────────▼────────┐ ┌────────▼────────┐
 
@@ -26,26 +26,24 @@ Splunk Indexer Cluster Project on (AWS) — Complete Documentation
 
 └────────┬────────┘ └────────┬────────┘ └────────┬────────┘
 
-&#x20;        │                   │                   │
+      │                   │                   │
 
-&#x20;        └────────── Cluster Manager ────────────┘
+       └────────── Cluster Manager ────────────┘
 
-&#x20;                   (10.0.x.x)
+                  (10.0.x.x)
 
-**2. VPC Setup**
+2. VPC Setup**
 
-&#x20;Component      	 Value
+Component      	 Value
+-------------- 	 -----------
 
-&#x20;-------------- 	 -----------
+VPC CIDR       	 10.0.0.0/16
 
-&#x20;VPC CIDR       	 10.0.0.0/16
+Public Subnet  	 10.0.1.0/24
 
-&#x20;Public Subnet  	 10.0.1.0/24
-
-&#x20;Private Subnet 	 10.0.2.0/24
+Private Subnet 	 10.0.2.0/24
 ----------------------------------
-**3. Subnet Usage**
-<<<<<<< HEAD
+3. Subnet Usage
 
 Instance:		        Subnet:
 
@@ -58,7 +56,7 @@ Peer Nodes		     Private Subnet
 -------------------------------------------
 
 
-4. **Security Group Rules**
+4. Security Group Rules
 
 Inbound Rules
 
@@ -78,5 +76,41 @@ Source:
 
 10.0.0.0/16
 
+5. Indexer Cluster Configuration
+Cluster Manager (server.conf)
+[clustering]
+mode = manager
+replication_factor = 3
+search_factor = 2
+pass4SymmKey = MyPassword123
+cluster_label = aws_cluster
+
+Peer Nodes (server.conf)
+[clustering]
+mode = peer
+manager_uri = https://<CLUSTER_MANAGER_IP>:8089
+replication_port = 9887
+pass4SymmKey = MyPassword123
+cluster_label = aws_cluster
+
+Enable Receiving Port (Peers)
+splunk enable listen 9997 -auth admin:password
+
+outputs.conf (Search Head)
+
+[tcpout]
+defaultGroup = idxcluster
+
+[tcpout:idxcluster]
+server = 10.0.2.37:9997,10.0.2.111:9997,10.0.2.202:9997
+autoLB = true
+forceTimebasedAutoLB = true
+
+Index Creation
+Created on Cluster Manager:
+[aws_cluster_index]
+homePath = $SPLUNK_DB/aws_cluster_index/db
+coldPath = $SPLUNK_DB/aws_cluster_index/colddb
+thawedPath = $SPLUNK_DB/aws_cluster_index/thaweddb
 
 
