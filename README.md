@@ -34,3 +34,19 @@ Splunk Indexer Cluster Project on (AWS) — Complete Documentation
 
 
 
+**2. VPC Setup**
+
+
+
+
+
+&#x20;Component      	 Value
+
+&#x20;-------------- 	 -----------
+
+&#x20;VPC CIDR       	 10.0.0.0/16
+
+&#x20;Public Subnet  	 10.0.1.0/24
+
+&#x20;Private Subnet 	 10.0.2.0/24
+
