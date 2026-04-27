@@ -46,15 +46,37 @@ Splunk Indexer Cluster Project on (AWS) — Complete Documentation
 
 &#x20;Private Subnet 	 10.0.2.0/24
 
+
+
 **3. Subnet Usage**
 
 Instance:		        Subnet:
 
 Search Head		     Public Subnet
 
-Cluster Manager	     Public Subnet
+Cluster Manager	             Public Subnet
 
 Peer Nodes		     Private Subnet
+
+\-------------------------------------------
+
+4\. **Security Group Rules**
+
+
+
+Inbound Rules
+
+Port	Purpose
+
+22	SSH
+
+8000	Splunk Web
+
+8089	Management
+
+9997	Forwarding
+
+9887	Clustering
 
 
 
