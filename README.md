@@ -50,3 +50,19 @@ Splunk Indexer Cluster Project on (AWS) — Complete Documentation
 
 &#x20;Private Subnet 	 10.0.2.0/24
 
+
+
+**3. Subnet Usage**
+
+
+
+Instance:		Subnet:
+
+Search Head		Public Subnet
+
+Cluster Manager		Public Subnet
+
+Peer Nodes		Private Subnet
+
+
+
