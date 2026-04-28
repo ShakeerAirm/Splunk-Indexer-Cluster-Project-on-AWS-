@@ -77,7 +77,9 @@ Source:
 10.0.0.0/16
 
 5. Indexer Cluster Configuration
+
 Cluster Manager (server.conf)
+
 [clustering]
 mode = manager
 replication_factor = 3
@@ -108,9 +110,16 @@ forceTimebasedAutoLB = true
 
 Index Creation
 Created on Cluster Manager:
+
 [aws_cluster_index]
 homePath = $SPLUNK_DB/aws_cluster_index/db
 coldPath = $SPLUNK_DB/aws_cluster_index/colddb
 thawedPath = $SPLUNK_DB/aws_cluster_index/thaweddb
 
 
+Data Ingestion
+
+Used Search Head → Add Data
+Uploaded app.log
+Indexed into:
+aws_cluster_index
